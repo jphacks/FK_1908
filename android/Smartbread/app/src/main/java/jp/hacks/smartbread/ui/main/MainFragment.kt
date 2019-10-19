@@ -2,18 +2,23 @@ package jp.hacks.smartbread.ui.main
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.camera.core.CameraX
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jp.hacks.smartbread.R
 import kotlinx.android.synthetic.main.main_fragment.*
-import java.nio.ByteBuffer
+import java.util.*
 
 class MainFragment : Fragment() {
+
+    private lateinit var textToSpeech: TextToSpeech
 
     companion object {
         fun newInstance() = MainFragment()
@@ -23,12 +28,17 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        textToSpeech = TextToSpeech(requireContext()) {}
+        textToSpeech.language = Locale.JAPANESE
+
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val TTSViewModel = ViewModelProviders.of(this).get(TTSViewModel::class.java)
 
         main_fragment_pay_meet_button.setOnClickListener {
             val mediaPlayer = MediaPlayer.create(this.context, R.raw.cat)
@@ -45,6 +55,10 @@ class MainFragment : Fragment() {
 
         viewModel.cameraPreviewLiveData.observeForever {
             view_finder.surfaceTexture = it
+        }
+
+        test_tts_button.setOnClickListener {
+            TTSViewModel.speech("食パン食べたい人はきてね〜、待ってますーす")
         }
 
         val imageCapture = viewModel.imageCapture
