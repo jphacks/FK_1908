@@ -1,3 +1,7 @@
 opencv-python
 keras
 numpy
+flask
+uwsgi
+tensorflow
+sklearn

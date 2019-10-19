@@ -19,7 +19,7 @@ for i in range(max_table, 255):
 for i in range(256):
     l_lut[i] = min_table + i * (diff_table) / 255
 
-image_list = glob('./data/fragments/no_breads/*')
+image_list = glob('./dataset/data/fragments/no_breads/*')
 
 # データ水増し
 for image_url in image_list:
@@ -27,10 +27,10 @@ for image_url in image_list:
     filename = image_url.split('/')[-1]
     fileidef = filename.split('.')[0]
 
-    high_dest = './data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'high_cont')
-    low_dest = './data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'low_cont')
-    hflip_dest = './data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'hflip')
-    vflip_dest = './data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'vflip')
+    high_dest = './dataset/data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'high_cont')
+    low_dest = './dataset/data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'low_cont')
+    hflip_dest = './dataset/data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'hflip')
+    vflip_dest = './dataset/data/pool/no_breads/{}_{}.jpg'.format(fileidef, 'vflip')
 
     # ハイコントラストデータ
     high_cont_img = cv2.LUT(src, h_rut)
@@ -51,4 +51,3 @@ for image_url in image_list:
     hfliped_img = cv2.flip(src, 0)
     resized_img = cv2.resize(hfliped_img, (224, 224))
     cv2.imwrite(hflip_dest, resized_img)
-
