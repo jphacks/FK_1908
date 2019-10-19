@@ -3,19 +3,21 @@ package jp.hacks.smartbread
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.Element
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.Fitness
 import com.google.android.gms.fitness.FitnessActivities
 import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.data.Session
-import java.util.*
-import java.util.concurrent.TimeUnit
 import com.google.android.gms.fitness.request.SessionReadRequest
 import com.google.android.gms.fitness.result.SessionReadResponse
+import java.util.Calendar
+import java.util.Date
+import java.util.concurrent.TimeUnit
 
 /*
 * うまくいくまで綺麗にかかない波なのでめっちゃ汚いです。
@@ -24,7 +26,7 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
 
     private val fitnessOptions by lazy {
         FitnessOptions.builder()
-            .addDataType(DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
+            .addDataType(Element.DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
             .build()
     }
 
@@ -45,14 +47,14 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
         // Result.RESULT_CANCELEDが帰ってくる。
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
-                accessGoogleFit();
+                accessGoogleFit()
             }
         }
     }
 
     private fun createGoogleFitApi() {
         val fitnessOptions = FitnessOptions.builder()
-            .addDataType(DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
+            .addDataType(Element.DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
             .build()
 
         if (!GoogleSignIn.hasPermissions(
@@ -91,14 +93,14 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
             .startSession(session)
 
         val readRequest = SessionReadRequest.Builder()
-            .read(DataType.TYPE_SPEED)
+            .read(Element.DataType.TYPE_SPEED)
             .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
             .setSessionName("get_sleep_time")
             .build()
 
         Fitness.getSessionsClient(this, GoogleSignIn.getLastSignedInAccount(this)!!)
             .readSession(readRequest)
-            .addOnSuccessListener {it: SessionReadResponse ->
+            .addOnSuccessListener { it: SessionReadResponse ->
                 val sessions = it.sessions
 
                 for (session in sessions) {
@@ -115,7 +117,7 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
             .addOnCompleteListener { Log.d(LOG_TAG, "onComplete()") }
     }
 
-    private fun stopSession(){
+    private fun stopSession() {
         Fitness.getSessionsClient(this, googleSignInAccount)
             .stopSession(identifier)
     }

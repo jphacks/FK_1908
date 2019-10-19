@@ -2,7 +2,7 @@ package jp.hacks.smartbread
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import jp.hacks.smartbread.ui.aiface.FaceFragment
+import jp.hacks.smartbread.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

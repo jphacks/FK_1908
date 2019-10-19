@@ -1,13 +1,12 @@
 package jp.hacks.smartbread.ui.main.health
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.FitnessOptions
 import com.google.android.gms.fitness.data.DataType
 
 class HealthPermissionUseCaseImpl : HealthPermissionUseCase {
-    companion object{
+    companion object {
         private const val REQUEST_OAUTH_REQUEST_CODE = "AIzaSyB6f4AzYdspA2eGeJEhK8k9u4HajRJ7qcA"
     }
 
@@ -28,7 +27,6 @@ class HealthPermissionUseCaseImpl : HealthPermissionUseCase {
                 fitnessOptions
             )
         } else {
-
         }
     }
 }

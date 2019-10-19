@@ -25,7 +25,7 @@ class HealthPermissionRepositoryImpl : HealthPermissionRepository {
         ) {
             /**/
         } else {
-            //readData()
+            // readData()
         }
     }
 }

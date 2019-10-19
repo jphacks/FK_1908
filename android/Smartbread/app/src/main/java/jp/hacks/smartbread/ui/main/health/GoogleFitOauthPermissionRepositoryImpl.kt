@@ -1,5 +1,5 @@
 package jp.hacks.smartbread.ui.main.health
 
-class GoogleFitOauthPermissionRepositoryImpl: GoogleFitOauthAppRepository{
+class GoogleFitOauthPermissionRepositoryImpl : GoogleFitOauthAppRepository {
     override fun requestOauth() {}
 }
