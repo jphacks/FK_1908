@@ -28,10 +28,10 @@ jobs:
           name: Run Build
           command: cd android/Smartbread && ./gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/Startbread/app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: cd android/Startbread && app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
 
   ReleaseBuild:
     working_directory: ~/code
@@ -44,12 +44,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: cd android/Startbread && ./gradlew assembleRelease
+          command: cd android/Smartbread && ./gradlew assembleRelease
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/Startbread/app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: cd android/Startbread && app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
   test:
     working_directory: ~/code
     docker:
@@ -61,12 +61,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: cd android/Startbread && ./gradlew test
+          command: cd android/Smartbread && ./gradlew test
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/Startbread/app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: cd android/Startbread && app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
   lint:
     working_directory: ~/code
     docker:
@@ -78,12 +78,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: cd android/Startbread && ./gradlew lint
+          command: cd android/Smartbread && ./gradlew lint
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: cd android/Startbread && app/build/reports
+          path: cd android/Smartbread && app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: cd android/Startbread && app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
   Danger:
     working_directory: ~/code
     docker:
