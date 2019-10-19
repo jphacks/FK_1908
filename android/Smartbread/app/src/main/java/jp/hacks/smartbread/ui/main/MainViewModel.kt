@@ -37,7 +37,7 @@ internal class MainViewModel : ViewModel() {
         imageCaptureLiveData.takePicture()
     }
 
-    fun startTimer(context: Context){
+    fun startTimer(context: Context) {
         autoWakeService = AutoWakeService(context)
     }
 }

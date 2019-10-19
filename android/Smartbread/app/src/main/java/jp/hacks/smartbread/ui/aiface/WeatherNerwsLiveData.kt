@@ -5,7 +5,6 @@ import jp.hacks.smartbread.ui.aiface.viewentity.WeatherNewsViewEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 
 internal class WeatherNerwsLiveData(
     private val coroutineScope: CoroutineScope
