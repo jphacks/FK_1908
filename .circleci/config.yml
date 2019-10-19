@@ -100,7 +100,7 @@ jobs:
           name: ktlint
           command: cd android/Smartbread && ./gradlew test
       - run: cd ../../
-      - rub: cd android/Smartbread/app/build/reports/ktlint/
+      - run: cd android/Smartbread/app/build/reports/ktlint/
       - run: pwd
       - run:
           name: Run Danger
