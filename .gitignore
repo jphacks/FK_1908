@@ -1,4 +1,6 @@
 server/recognition/data
+server/bread-api/config/credentials.yml
+server/bread-api/.idea
 **/.DS_Store
 android/Smartbread/app/build
 android/Smartbread/.idea/libraries
