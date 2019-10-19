@@ -1,6 +1,5 @@
 package jp.hacks.smartbread.ui.aiface
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import jp.hacks.smartbread.R
 import jp.hacks.smartbread.databinding.FaceFragmentBinding
-import jp.hacks.smartbread.ui.aiface.viewentity.WeatherNewsViewEntity
 import kotlinx.android.synthetic.main.face_fragment.*
 
 /*
@@ -56,7 +54,7 @@ internal class FaceFragment : Fragment() {
         viewModel.newsLiveData.observeForever {
             newsAdapter.insert(it)
             newsAdapter.notifyDataSetChanged()
-            if(it.count() != 0){
+            if (it.count() != 0) {
                 binding.loadNewsMaterialButton.visibility = View.GONE
             }
         }

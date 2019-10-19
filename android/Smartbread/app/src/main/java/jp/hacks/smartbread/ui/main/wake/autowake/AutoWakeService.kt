@@ -1,16 +1,14 @@
 package jp.hacks.smartbread.ui.main.wake.autowake
 
-
 import android.content.Context
+import java.util.*
+import java.util.concurrent.TimeUnit
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecase
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecaseImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.ticker
-import kotlinx.coroutines.channels.toChannel
 import kotlinx.coroutines.launch
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 internal class AutoWakeService(
     private val context: Context,
@@ -25,7 +23,7 @@ internal class AutoWakeService(
             ticker.consumeEach {
                 val targetDate = wakeDateReadonlyRepository.loadWakeDate()
                 val now = Date()
-                if(now.hours == targetDate.hours && now.minutes == targetDate.minutes){
+                if (now.hours == targetDate.hours && now.minutes == targetDate.minutes) {
                     burnBreadUsecase.startBurn()
                 }
             }
