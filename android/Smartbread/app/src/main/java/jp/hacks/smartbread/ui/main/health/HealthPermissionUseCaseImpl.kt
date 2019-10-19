@@ -1,5 +1,6 @@
 package jp.hacks.smartbread.ui.main.health
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.FitnessOptions
