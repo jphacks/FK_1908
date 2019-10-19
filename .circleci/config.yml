@@ -8,9 +8,10 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+      - run: android/Smartbread
       - run:
           name: Download Dependencies
-          command: android/Smartbread/gradlew androidDependencies
+          command: /gradlew androidDependencies
       - persist_to_workspace:
           root: .
           paths:
@@ -95,7 +96,7 @@ jobs:
             at: .
         - run:
             name: install bundle
-            command: bundle install 
+            command: bundle install
         - run:
             name: Run Danger
             command: bundle exec danger --fail-on-errors=true
