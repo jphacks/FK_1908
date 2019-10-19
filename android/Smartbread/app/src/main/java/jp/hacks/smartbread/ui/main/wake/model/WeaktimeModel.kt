@@ -1,4 +1,4 @@
-package jp.hacks.smartbread.ui.main.weak.model
+package jp.hacks.smartbread.ui.main.wake.model
 
 internal data class WeaktimeModel(
     val hours: Int,

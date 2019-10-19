@@ -1,5 +1,6 @@
 package jp.hacks.smartbread.ui.main
 
+import android.content.Context
 import android.view.Surface
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureConfig
@@ -7,6 +8,7 @@ import androidx.camera.core.Preview
 import androidx.camera.core.PreviewConfig
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import jp.hacks.smartbread.ui.main.wake.autowake.AutoWakeService
 
 internal class MainViewModel : ViewModel() {
     lateinit var imageCapture: ImageCapture
@@ -14,6 +16,7 @@ internal class MainViewModel : ViewModel() {
 
     lateinit var cameraPreviewLiveData: CameraPreviewLiveData
     lateinit var imageCaptureLiveData: ImageCaptureLiveData
+    private lateinit var autoWakeService: AutoWakeService
 
     init {
         val imageCaptureConfig = ImageCaptureConfig.Builder()
@@ -32,5 +35,9 @@ internal class MainViewModel : ViewModel() {
 
     fun takePicture() {
         imageCaptureLiveData.takePicture()
+    }
+
+    fun startTimer(context: Context){
+        autoWakeService = AutoWakeService(context)
     }
 }
