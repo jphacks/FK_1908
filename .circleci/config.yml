@@ -95,7 +95,7 @@ jobs:
           at: .
       - run:
           name: install bundle
-          command: bundle install
+          command: bundle install --path vendor/bundle
       - run:
           name: ktlint
           command: cd android/Smartbread && ./gradlew test
