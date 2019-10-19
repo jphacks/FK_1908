@@ -1,0 +1,115 @@
+version: 2
+jobs:
+  prepare_ci:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - checkout
+      - restore_cache:
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - run:
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - '*'
+  DebugBuild:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: pwd
+          command: pwd
+      - run:
+          name: ls
+          command: ls
+      - run:
+          name: Run Build
+          command: ./gradlew assembleDebug
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+
+  ReleaseBuild:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Build
+          command: ./gradlew assembleRelease
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+  test:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Build
+          command: ./gradlew test
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+  lint:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run Build
+          command: ./gradlew lint
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: app/build/reports
+          destination: reports
+      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: app/build/test-results
+workflows:
+  version: 2
+  main:
+    jobs:
+      - prepare_ci
+      - DebugBuild:
+          requires:
+            - prepare_ci
+      - ReleaseBuild:
+          requires:
+            - DebugBuild
+      - test:
+          requires:
+            - DebugBuild
+      - lint:
+          requires:
+            - DebugBuild
