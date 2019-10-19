@@ -98,10 +98,7 @@ jobs:
           command: bundle install --path vendor/bundle
       - run:
           name: ktlint
-          command: cd android/Smartbread && ./gradlew test
-      - run: cd ../../
-      - run: cd android/Smartbread/app/build/reports/ktlint/
-      - run: pwd
+          command: cd android/Smartbread && ./gradlew ktlintCheck
       - run:
           name: Run Danger
           command: bundle exec danger --fail-on-errors=true
