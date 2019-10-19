@@ -11,7 +11,7 @@ jobs:
       - run: android/Smartbread
       - run:
           name: Download Dependencies
-          command: /gradlew androidDependencies
+          command: ./gradlew androidDependencies
       - persist_to_workspace:
           root: .
           paths:
