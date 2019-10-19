@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Download Dependencies
-          command: cd android/Smartbread && ./gradlew androidDependencies
+          command: cd android/Smartbread ./gradlew androidDependencies
       - persist_to_workspace:
           root: .
           paths:
@@ -26,12 +26,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: cd android/Smartbread && ./gradlew assembleDebug
+          command: android/Startbread/gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: cd android/Smartbread && ./app/build/test-results
+          path: android/Startbread/app/build/test-results
 
   ReleaseBuild:
     working_directory: ~/code
