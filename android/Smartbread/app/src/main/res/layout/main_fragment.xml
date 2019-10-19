@@ -7,15 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MainFragment"
+    <TextureView
+        android:id="@+id/view_finder"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/saved_image_finder"
+        android:layout_width="120dp"
+        android:layout_height="240dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_finder"
+        app:layout_constraintStart_toEndOf="@id/view_finder"
+        app:layout_constraintTop_toTopOf="@id/view_finder"
+
+        />
+
+    <Button
+        android:id="@+id/save_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:padding="16dp"
+        android:text="画像を保存するボタン"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_finder" />
 
     <Button
         android:id="@+id/main_fragment_pay_meet_button"
@@ -26,6 +46,15 @@
         android:text="肉を焼く音を再生"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/message" />
+        app:layout_constraintTop_toBottomOf="@id/save_image_button" />
 
+    <Button
+        android:id="@+id/test_tts_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="TTSを試す"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_fragment_pay_meet_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

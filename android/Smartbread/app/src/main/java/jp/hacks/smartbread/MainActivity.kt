@@ -2,6 +2,7 @@ package jp.hacks.smartbread
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import jp.hacks.smartbread.ui.aiface.FaceFragment
 import jp.hacks.smartbread.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.main_activity)
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-        .replace(R.id.container, MainFragment.newInstance())
+        .replace(R.id.container, FaceFragment.newInstance())
         .commitNow()
     }
   }

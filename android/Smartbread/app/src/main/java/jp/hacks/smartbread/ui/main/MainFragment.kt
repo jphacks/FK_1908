@@ -6,15 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import android.speech.tts.TextToSpeech
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.camera.core.CameraX
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
 import jp.hacks.smartbread.R
 import kotlinx.android.synthetic.main.main_fragment.*
+import java.util.*
 
 class MainFragment : Fragment() {
 
-  companion object {
-    fun newInstance() = MainFragment()
-  }
+    private lateinit var textToSpeech: TextToSpeech
 
   private lateinit var viewModel: MainViewModel
 
@@ -23,17 +29,52 @@ class MainFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View {
+    companion object {
+        fun newInstance() = MainFragment()
+    }
 
-    return inflater.inflate(R.layout.main_fragment, container, false)
-  }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-    viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        textToSpeech = TextToSpeech(requireContext()) {}
+        textToSpeech.language = Locale.JAPANESE
 
-    main_fragment_pay_meet_button.setOnClickListener {
-      val mediaPlayer = MediaPlayer.create(this.context, R.raw.cat)
-      mediaPlayer.start()
+        return inflater.inflate(R.layout.main_fragment, container, false)
     }
   }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        val TTSViewModel = ViewModelProviders.of(this).get(TTSViewModel::class.java)
+
+        main_fragment_pay_meet_button.setOnClickListener {
+            val mediaPlayer = MediaPlayer.create(this.context, R.raw.cat)
+            mediaPlayer.start()
+        }
+
+        save_image_button.setOnClickListener {
+            viewModel.takePicture()
+        }
+
+        viewModel.imageCaptureLiveData.observeForever {
+            saved_image_finder.setImageBitmap(it)
+        }
+
+        viewModel.cameraPreviewLiveData.observeForever {
+            view_finder.surfaceTexture = it
+        }
+
+        test_tts_button.setOnClickListener {
+            TTSViewModel.speech("食パン食べたい人はきてね〜、待ってますーす")
+        }
+
+        val imageCapture = viewModel.imageCapture
+        val preview = viewModel.cameraPreview
+        CameraX.bindToLifecycle(this as LifecycleOwner, imageCapture, preview)
+
+        viewModel.startTimer(this.requireContext())
+    }
 }
