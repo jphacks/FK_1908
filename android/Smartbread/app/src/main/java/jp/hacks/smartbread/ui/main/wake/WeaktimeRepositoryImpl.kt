@@ -1,6 +1,6 @@
-package jp.hacks.smartbread.ui.main.weak
+package jp.hacks.smartbread.ui.main.wake
 
-import jp.hacks.smartbread.ui.main.weak.model.WeaktimeModel
+import jp.hacks.smartbread.ui.main.wake.model.WeaktimeModel
 
 internal class WeaktimeRepositoryImpl : WeaktimeRepository {
     override suspend fun loadWeakTime(): WeaktimeModel {
