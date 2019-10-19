@@ -87,19 +87,19 @@ jobs:
           path: android/Startbread/app/build/test-results
   Danger:
     working_directory: ~/code
-      docker:
-          - image: circleci/android:api-29-node
-      environment:
-        JVM_OPTS: -Xmx3200m
-      steps:
-        - attach_workspace:
-            at: .
-        - run:
-            name: install bundle
-            command: bundle install
-        - run:
-            name: Run Danger
-            command: bundle exec danger --fail-on-errors=true
+    docker:
+        - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: install bundle
+          command: bundle install
+      - run:
+          name: Run Danger
+          command: bundle exec danger --fail-on-errors=true
 workflows:
   version: 2
   main:
