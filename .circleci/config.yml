@@ -99,6 +99,7 @@ jobs:
       - run:
           name: ktlint
           command: cd android/Smartbread && ./gradlew test
+      - run: cd ../../
       - run:
           name: Run Danger
           command: bundle exec danger --fail-on-errors=true
