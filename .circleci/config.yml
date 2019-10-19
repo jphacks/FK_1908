@@ -26,12 +26,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: android/Smartbread/gradlew assembleDebug
+          command: cd android/Smartbread && ./gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: android/Startbread/app/build/test-results
+          path: cd android/Startbread && app/build/test-results
 
   ReleaseBuild:
     working_directory: ~/code
