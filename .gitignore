@@ -1,2 +1,8 @@
 server/recognition/data
 **/.DS_Store
+android/Smartbread/app/build
+android/Smartbread/.idea/libraries
+android/Smartbread/.idea/libraries
+android/Smartbread/.gradle
+android/Smartbread/app/build
+**/build/**
