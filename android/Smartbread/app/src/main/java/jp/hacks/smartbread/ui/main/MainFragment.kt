@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.camera.core.CameraX
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import jp.hacks.smartbread.R
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -64,5 +62,7 @@ class MainFragment : Fragment() {
         val imageCapture = viewModel.imageCapture
         val preview = viewModel.cameraPreview
         CameraX.bindToLifecycle(this as LifecycleOwner, imageCapture, preview)
+
+        viewModel.startTimer(this.requireContext())
     }
 }
