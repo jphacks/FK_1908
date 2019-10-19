@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Download Dependencies
-          command: cd android/Smartbread ./gradlew androidDependencies
+          command: cd android/Smartbread && ./gradlew androidDependencies
       - persist_to_workspace:
           root: .
           paths:
