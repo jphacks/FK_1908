@@ -1,7 +1,7 @@
 package jp.hacks.smartbread.ui.main.wake.autowake
 
 import android.content.Context
-import java.util.*
+import java.util.Date
 import java.util.concurrent.TimeUnit
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecase
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecaseImpl
