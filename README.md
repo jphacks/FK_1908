@@ -64,14 +64,18 @@
 ### 研究内容・事前開発プロダクト（任意）
 ご自身やチームの研究内容や、事前に持ち込みをしたプロダクトがある場合は、こちらに実績なども含め記載をして下さい。
 * CircleCi Android Build job (build only)
-* 
 
 
 ### 独自開発技術（Hack Dayで開発したもの）
 #### 2日間に開発した独自の機能・技術
 * 独自で開発したものの内容をこちらに記載してください
 * 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください（任意）
-
+* CircelCI で継続的にビルドすることでコードが常にビルドできる状態を維持していた
 * Danger + ktlint で注意点をPRに通知
-* Android client app を Clean あーきてくちゃ　
+* CircleCi で ktlint を継続的にチェックすることでコードの品質を一定に保つ努力を
+* Android client app を Clean アーキテクチャ + Usecase, repository などの決勝を意識した保守性を重視した構成に
 * CircleCi Android Build job (build only) 
+* Kubernetes を活用したサーバーサイドと機械学習の運用
+* Android アプリの上で TTS を利用して発音できるようにした
+* Android アプリでPreview 版のカメラAPIを利用してプレビューが見れるようにしたのと、写真を取得してサーバーに送信できるようにしました。
+* BGM を再生できるようにした
