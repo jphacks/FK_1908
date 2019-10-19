@@ -1,8 +1,8 @@
 package jp.hacks.smartbread
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import jp.hacks.smartbread.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import jp.hacks.smartbread.ui.aiface.FaceFragment
 
 class MainActivity : AppCompatActivity() {
 

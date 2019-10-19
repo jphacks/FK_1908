@@ -5,10 +5,10 @@ import android.graphics.BitmapFactory
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageProxy
 import androidx.lifecycle.LiveData
+import java.nio.ByteBuffer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.nio.ByteBuffer
 
 internal class ImageCaptureLiveData(
     private val coroutineScope: CoroutineScope,

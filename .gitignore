@@ -6,4 +6,5 @@ android/Smartbread/.idea/libraries
 android/Smartbread/.gradle
 android/Smartbread/app/build
 **/build/**
+vendor
 android/Smartbread/.gradle

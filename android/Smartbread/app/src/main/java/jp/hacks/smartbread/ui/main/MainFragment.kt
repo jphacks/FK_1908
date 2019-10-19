@@ -13,9 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.camera.core.CameraX
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.FitnessOptions
@@ -33,21 +31,29 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.fitness.Fitness
 import com.google.android.gms.fitness.request.DataReadRequest
 import java.util.concurrent.TimeUnit
-
+import java.util.Locale
+import jp.hacks.smartbread.R
+import kotlinx.android.synthetic.main.main_fragment.main_fragment_pay_meet_button
+import kotlinx.android.synthetic.main.main_fragment.save_image_button
+import kotlinx.android.synthetic.main.main_fragment.saved_image_finder
+import kotlinx.android.synthetic.main.main_fragment.test_tts_button
+import kotlinx.android.synthetic.main.main_fragment.view_finder
 
 class MainFragment : Fragment() {
-
-    private lateinit var textToSpeech: TextToSpeech
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
+    private lateinit var textToSpeech: TextToSpeech
+
+    private lateinit var viewModel: MainViewModel
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         textToSpeech = TextToSpeech(requireContext()) {}
         textToSpeech.language = Locale.JAPANESE
 
@@ -83,6 +89,8 @@ class MainFragment : Fragment() {
         val imageCapture = viewModel.imageCapture
         val preview = viewModel.cameraPreview
         CameraX.bindToLifecycle(this as LifecycleOwner, imageCapture, preview)
+
+        viewModel.startTimer(this.requireContext())
     }
 
 
