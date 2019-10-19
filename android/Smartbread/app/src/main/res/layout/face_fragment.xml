@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ai_face_container"
-        android:layout_width="400dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h,1:1"
@@ -19,11 +19,11 @@
         <ImageView
             android:id="@+id/right_eye_image"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="104dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginStart="8dp"
-            android:scaleType="fitCenter"
+            android:scaleType="fitStart"
             android:src="@drawable/eye"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/left_eye_image"
@@ -32,10 +32,10 @@
         <ImageView
             android:id="@+id/left_eye_image"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginStart="24dp"
-            android:scaleType="fitCenter"
             android:layout_marginEnd="8dp"
+            android:scaleType="fitEnd"
             android:src="@drawable/eye"
             app:layout_constraintEnd_toStartOf="@+id/right_eye_image"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/mouth_image"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
             android:scaleType="fitCenter"
             android:src="@drawable/mouth"
             app:layout_constraintBottom_toBottomOf="parent"
