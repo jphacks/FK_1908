@@ -1,6 +1,5 @@
 package jp.hacks.smartbread.ui.aiface
 
-import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,13 +33,13 @@ class FaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         change_eye_button.setOnClickListener {
-            viewModel.addCount()
+            viewModel.changeEyeState()
         }
     }
 
     private fun setupViewModel(){
-        viewModel.countEye.observe(this, Observer {
-            val resource = if(it % 2 == 0) R.drawable.eye_close else R.drawable.eye
+        viewModel.eyeIsCount.observe(this, Observer {
+            val resource = if(it) R.drawable.eye_close else R.drawable.eye
             Glide.with(this).load(resource).into(right_eye_image)
             Glide.with(this).load(resource).into(left_eye_image)
         })

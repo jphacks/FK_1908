@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class FaceViewModel : ViewModel() {
-    private val modifiableCountEye: MutableLiveData<Int> = MutableLiveData()
-    val countEye: LiveData<Int> = modifiableCountEye
+    private val modifiableEyeIsOpen: MutableLiveData<Boolean> = MutableLiveData()
+    val eyeIsCount: LiveData<Boolean> = modifiableEyeIsOpen
 
-    fun addCount() {
-        modifiableCountEye.value = (countEye.value ?: 0) + 1
+    fun changeEyeState() {
+        modifiableEyeIsOpen.value = !(eyeIsCount.value ?: true)
     }
 }
