@@ -9,14 +9,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/app/build.gradle" }}
+          key: jars-{{ checksum "android/Startbread/build.gradle" }}-{{ checksum  "android/Startbread/app/build.gradle" }}
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "android/build.gradle" }}-{{ checksum  "android/app/build.gradle" }}
+          key: jars-{{ checksum "android/Startbread/build.gradle" }}-{{ checksum  "android/Startbread/app/build.gradle" }}
       - persist_to_workspace:
           root: .
           paths:
@@ -32,12 +32,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: android/gradlew assembleDebug
+          command: android/Startbread/gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/app/build/reports
+          path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: android/app/build/test-results
+          path: android/Startbread/app/build/test-results
 
   ReleaseBuild:
     working_directory: ~/code
@@ -50,12 +50,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: android/gradlew assembleRelease
+          command: android/Startbread/gradlew assembleRelease
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/app/build/reports
+          path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: android/app/build/test-results
+          path: android/Startbread/app/build/test-results
   test:
     working_directory: ~/code
     docker:
@@ -67,12 +67,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: android/gradlew test
+          command: android/Startbread/gradlew test
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/app/build/reports
+          path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: android/app/build/test-results
+          path: android/Startbread/app/build/test-results
   lint:
     working_directory: ~/code
     docker:
@@ -84,12 +84,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: android/gradlew lint
+          command: android/Startbread/gradlew lint
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: android/app/build/reports
+          path: android/Startbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: android/app/build/test-results
+          path: android/Startbread/app/build/test-results
 workflows:
   version: 2
   main:
