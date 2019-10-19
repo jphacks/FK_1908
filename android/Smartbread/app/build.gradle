@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 29
@@ -26,6 +28,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -46,10 +56,19 @@ dependencies {
     implementation "androidx.camera:camera-core:$camerax_version"
     implementation "androidx.camera:camera-camera2:$camerax_version"
 
+    // fuel
+    implementation 'com.github.kittinunf.fuel:fuel:1.4.0'
+
     // constraint layout
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+
+    // Livedata ktx
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-beta01")
 
     // glide
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // material design for android
+    implementation 'com.google.android.material:material:1.0.0'
 }
