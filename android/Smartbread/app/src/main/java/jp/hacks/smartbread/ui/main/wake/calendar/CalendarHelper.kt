@@ -1,14 +1,15 @@
-package jp.hacks.smartbread.ui.main
+package jp.hacks.smartbread.ui.main.wake.calendar
 
 import android.content.Context
 import android.icu.util.Calendar
-import android.util.Log
-import jp.hacks.smartbread.ui.main.wake.calendar.CalendarEvent
+import android.text.format.DateFormat
+import jp.hacks.smartbread.ui.main.wake.calendar.model.CalendarEvent
 import me.everything.providers.android.calendar.CalendarProvider
 import me.everything.providers.android.calendar.Event
 import java.sql.Date
 
-object CalenderHelper {
+
+object CalendarHelper {
 
     private fun yesterdayTime(): Long {
         val date = Date(System.currentTimeMillis()).time
@@ -32,8 +33,12 @@ object CalenderHelper {
         if (this == null) CalendarEvent()
         else CalendarEvent(
             startTime = dTStart,
+            date = dTStart.formatToString(),
             location = eventLocation
         )
+
+    private fun Long.formatToString() =
+        DateFormat.format("yyyy/MM/dd", this).toString()
 
     fun setupCalender(context: Context): CalendarEvent {
         val calendarProvider = CalendarProvider(context)
