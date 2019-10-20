@@ -25,4 +25,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun navigateToFaceFragment(){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, FaceFragment.newInstance())
+            .commitNow()
+    }
 }

@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import jp.hacks.smartbread.MainActivity
 import jp.hacks.smartbread.databinding.FragmentDebugBinding
 import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
 import jp.hacks.smartbread.ui.main.wake.BurnBreadBGMServiceImpl
 import jp.hacks.smartbread.ui.main.wake.StartBurnBreadUsecaseImpl
 import jp.hacks.smartbread.ui.main.wake.StopBurnBreadUsecaseImpl
+import kotlinx.android.synthetic.main.fragment_debug.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -58,6 +60,11 @@ internal class DebugFragment : Fragment() {
             GlobalScope.launch {
                 bgmService.startBGM()
             }
+        }
+
+        binding.fragmentDebugNavigateFaceFragmentButton.setOnClickListener {
+            val mainActivity = activity as MainActivity
+            mainActivity.navigateToFaceFragment()
         }
 
         return binding.root
