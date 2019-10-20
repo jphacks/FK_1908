@@ -84,6 +84,9 @@ jobs:
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: cd android/Smartbread && app/build/test-results
+      - run:
+          name: Deploygate
+          command: cd android/Smartbread && ./gradlew uploadDeployGate1Debug
   Danger:
     working_directory: ~/code
     docker:
@@ -102,18 +105,6 @@ jobs:
       - run:
           name: Run Danger
           command: bundle exec danger --fail-on-errors=true
-  DeployGate:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-29-node
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - attach_workspace:
-          at: .
-      - run:
-          name: Deploygate
-          command: cd android/Smartbread && ./gradlew uploadDeployGate1Debug
 
 workflows:
   version: 2
