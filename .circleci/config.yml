@@ -111,9 +111,10 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - distribute:
+      - run:
           name: Deploygate
           command: cd android/Smartbread && ./gradlew uploadDeployGate1Debug
+
 workflows:
   version: 2
   main:
