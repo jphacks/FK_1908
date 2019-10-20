@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
             }
         }
+
+        GoogleFitApiDebugActivity.startActivity(this)
     }
 
     fun navigateToFaceFragment() {
