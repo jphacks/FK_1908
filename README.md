@@ -1,6 +1,6 @@
 # スマート・トースター molle
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sWgyxhGbqFs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![ビデオが開けなかった場合に表示されるテキスト](http://img.youtube.com/vi/sWgyxhGbqFs/0.jpg)](http://www.youtube.com/watch?v=sWgyxhGbqFs)
 
 ## 製品概要
 ### 焼きたてパンの香りで起きる朝 x tech
