@@ -19,7 +19,7 @@ internal class BurnBreadUsecaseImpl(
 
         val timer = burnBreadTimer
 
-        val debug_mode = true
+        val debug_mode = false
 
         if (!debug_mode) {
             // 0:05 に電源を入れる
@@ -28,12 +28,12 @@ internal class BurnBreadUsecaseImpl(
             }
         }
         // 0:05 に朝だよーって喋る
-        timer.addEvent(0, 5) {
-            TTSService.speach("朝だよー！")
+        timer.addEvent(0, 45) {
+            TTSService.speach("朝だから起きて！！！！！")
         }
         // 1:00 に起きてーって言う
-        timer.addEvent(0, 15) {
-            TTSService.speach("起きてー！")
+        timer.addEvent(1, 0) {
+            TTSService.speach("美味しいパンが待ってるよ！")
         }
 
         if (!debug_mode) {
