@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/fragment_debug_power_on_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            android:text="電源を入れる" />
+
+        <Button
+            android:id="@+id/fragment_debug_power_off_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            android:text="電源を切る" />
+
+        <Button
+            android:id="@+id/fragment_debug_talk_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            android:text="音声を話すようにする" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
