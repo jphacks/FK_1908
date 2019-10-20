@@ -21,7 +21,7 @@
             android:padding="8dp"
             android:text="@{bindingModel.title}"
             android:textColor="@color/colorPrimary"
-            android:textSize="28sp"
+            android:textSize="56sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,7 @@
             android:textColor="@color/colorPrimary"
             android:padding="8dp"
             android:text="@{bindingModel.place}"
-            android:textSize="16sp"
+            android:textSize="48sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_text_view"
             tools:text="Fukuoka city" />
@@ -48,7 +48,7 @@
             android:layout_margin="16dp"
             android:padding="8dp"
             android:text="@{bindingModel.weather}"
-            android:textSize="16sp"
+            android:textSize="48sp"
             app:layout_constraintStart_toEndOf="@id/place_text_view"
             app:layout_constraintTop_toBottomOf="@id/title_text_view"
             tools:text="sunny🌤" />
@@ -61,7 +61,7 @@
             android:layout_margin="16dp"
             android:padding="8dp"
             android:text="@{bindingModel.temperature}"
-            android:textSize="16sp"
+            android:textSize="48sp"
             app:layout_constraintStart_toEndOf="@id/weather_text_view"
             app:layout_constraintTop_toBottomOf="@id/title_text_view"
             tools:text="28℃" />
