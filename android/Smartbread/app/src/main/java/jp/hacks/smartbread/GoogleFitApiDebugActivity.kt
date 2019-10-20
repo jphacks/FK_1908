@@ -26,7 +26,7 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
 
     private val fitnessOptions by lazy {
         FitnessOptions.builder()
-            .addDataType(Element.DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
             .build()
     }
 
@@ -54,7 +54,7 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
 
     private fun createGoogleFitApi() {
         val fitnessOptions = FitnessOptions.builder()
-            .addDataType(Element.DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.AGGREGATE_ACTIVITY_SUMMARY, FitnessOptions.ACCESS_READ)
             .build()
 
         if (!GoogleSignIn.hasPermissions(
@@ -93,7 +93,7 @@ class GoogleFitApiDebugActivity : AppCompatActivity() {
             .startSession(session)
 
         val readRequest = SessionReadRequest.Builder()
-            .read(Element.DataType.TYPE_SPEED)
+            .read(DataType.TYPE_SPEED)
             .setTimeInterval(startTime, endTime, TimeUnit.MILLISECONDS)
             .setSessionName("get_sleep_time")
             .build()
