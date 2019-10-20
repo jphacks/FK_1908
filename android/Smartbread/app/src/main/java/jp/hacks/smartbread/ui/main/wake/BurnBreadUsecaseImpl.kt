@@ -43,6 +43,12 @@ internal class BurnBreadUsecaseImpl(
                 val inputText = text + text + text
                 TTSService.speach(inputText)
             }
+
+            // 2:40 に起きてーって言う
+            timer.addEvent(2, 0) {
+                TTSService.speach("上手に焼けましたー！！！")
+            }
+
             // 2:45 に電源を落とす
             timer.addEvent(2, 30) {
                 stopBurnBreadUsecase.execute()
