@@ -4,6 +4,7 @@ require 'uri'
 require 'date'
 require 'rss'
 require 'openssl'
+require 'aws-sdk-dynamodb'
 
 def lambda_handler(event:, context:)
   threads = []
@@ -13,7 +14,8 @@ def lambda_handler(event:, context:)
   origin = event['origin']
   dest = event['dest']
 
-  gmap_result = fetch_duration(origin: origin, dest: dest)
+  plan = fetch_recent_plan
+  gmap_result = fetch_duration(origin: origin, dest: dest, start_time: plan["start_time"].to_i)
   duration = gmap_result[:duration]
   start_loc = gmap_result[:start_loc]
   end_loc = gmap_result[:end_loc]
@@ -30,29 +32,24 @@ def lambda_handler(event:, context:)
 
   threads.each(&:join)
 
-  tomorrow = Time.now.localtime.to_date.next_day.to_time
-  default_time = DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day, 9, 0, 0, "+09:00")
+  default_time = Time.at(plan["start_time"].to_i)
 
   alarm = default_time.to_time - duration["value"].to_i - prepare_map(weather_code: results[:origin_weather]) - prepare_map(weather_code: results[:dest_weather])
   alarm_data = { hours: alarm.hour, minutes: alarm.min, seconds: alarm.sec }
   { statusCode: 200, data: { alarm: alarm_data, default: default_time.to_time, duration: duration["value"].to_i }, origin: prepare_map(weather_code: results[:origin_weather]) }
   rescue => e
-  { statusCode: 400, error: e, event: event, results: results }
+  { statusCode: 400, error: e.backtrace.join("\n"), event: event, results: results }
 end
 
 def credential
   cred = ENV['Credential']
 end
 
-def fetch_duration(origin:, dest:)
+def fetch_duration(origin:, dest:, start_time:)
   raise 'origin or dest are blank' if origin.to_s.empty? || dest.to_s.empty?
 
-  # 9:00 a.a.を基準として出発時間を考慮に入れる
-  tomorrow = Time.now.localtime.to_date.next_day.to_time
-  default_departure_time = DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day, 9, 0, 0, "+09:00").to_time.to_i
+  req_url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{dest}&departure_time=#{start_time}&key=#{credential}"
 
-  # 出発時間を指定することで、交通状況を考慮した所要時間を取得できる
-  req_url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{dest}&departure_time=#{default_departure_time}&key=#{credential}"
   uri = URI.parse(req_url)
 
   http = Net::HTTP.new(uri.hostname, uri.port)
@@ -89,4 +86,26 @@ def prepare_map(weather_code:)
   return 60 * 60 if (200..299).to_a.include? weather_code # thunderstorm
   return 60 * 60 if (700..799).to_a.include? weather_code # atmosphere
   return 60 * 0 # default
+end
+
+def fetch_recent_plan
+  tomorrow = DateTime.now.to_date.next_day
+  start_date = tomorrow.strftime("%Y/%m/%d")
+
+  dynamoDB = Aws::DynamoDB::Resource.new
+  post_table = dynamoDB.table("Calender")
+  resp = post_table.query({
+            select: "ALL_ATTRIBUTES",
+            limit: 1,
+            consistent_read: false,
+            key_condition_expression: "#SD = :sd",
+            expression_attribute_names: {
+              "#SD": "start_date",
+            },
+            expression_attribute_values: {
+              ":sd": start_date,
+            },
+            scan_index_forward: false,
+        })
+  resp["items"].first
 end
