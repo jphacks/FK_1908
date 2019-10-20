@@ -11,7 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import jp.hacks.smartbread.R
 import jp.hacks.smartbread.databinding.FaceFragmentBinding
+import jp.hacks.smartbread.ui.main.tts.TTSService
+import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
+import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecaseImpl
 import kotlinx.android.synthetic.main.face_fragment.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /*
 * 可愛い顔を動かすためのFragment。
@@ -24,6 +29,7 @@ internal class FaceFragment : Fragment() {
 
     private lateinit var viewModel: FaceViewModel
     private lateinit var binding: FaceFragmentBinding
+    private lateinit var ttsService: TTSService
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +45,8 @@ internal class FaceFragment : Fragment() {
         )
 
         viewModel = ViewModelProviders.of(this).get(FaceViewModel::class.java)
+
+        ttsService = TTSServiceImpl(requireContext())
 
         return binding.root
     }
@@ -64,6 +72,14 @@ internal class FaceFragment : Fragment() {
 
         binding.loadNewsMaterialButton.setOnClickListener {
             viewModel.loadNews()
+        }
+
+        binding.faceFragmentStartWakeUpTaskButton.setOnClickListener {
+            //            val autoWakeService = AutoWakeService(requireContext())
+            val burnBreadUsecase = BurnBreadUsecaseImpl(requireContext(), this.ttsService)
+            GlobalScope.launch {
+                burnBreadUsecase.startBurn()
+            }
         }
     }
 

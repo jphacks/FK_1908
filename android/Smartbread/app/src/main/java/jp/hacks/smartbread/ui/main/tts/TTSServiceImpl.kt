@@ -10,7 +10,7 @@ class TTSServiceImpl(
 
     private lateinit var tts: TextToSpeech
 
-    override suspend fun speach(text: String) {
+    override fun speach(text: String) {
         tts = TextToSpeech((context)) {
             tts.speak(text, TextToSpeech.QUEUE_ADD, null, null)
         }.apply {
