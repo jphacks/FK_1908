@@ -6,10 +6,14 @@ import tensorflow as tf
 from flask import Flask, request
 from keras.models import load_model
 
+classes = ['no_breads', 'breads']
+
+global model, graph
+model = load_model(os.path.dirname(os.path.abspath(__file__)) + '/vgg16.h5')
 from config import *
 
 global model, graph
-model = load_model(os.path.dirname(os.path.abspath(__file__)) + '/' + conf.model_name)
+model = load_model(os.path.dirname(os.path.abspath(__file__)) + '/' + conf.model_na
 graph = tf.compat.v1.get_default_graph()
 
 app = flask.Flask(__name__)
@@ -21,6 +25,7 @@ def handle_request():
     img = cv2.imdecode(img_array, 1)
     img = np.asarray(img)
     img = img.reshape((1, conf.image_size, conf.image_size, 3))
+
     with graph.as_default():
         result = model.predict(img)
     print(parse2label(result)[0])
@@ -31,6 +36,7 @@ def handle_hello():
     return 'hello'
 
 def parse2label(predicted_arr):
+
     return [conf.classes[np.argmax(result)] for result in predicted_arr]
 
 if __name__ == "__main__":

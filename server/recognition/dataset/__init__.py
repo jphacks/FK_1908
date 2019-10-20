@@ -14,6 +14,7 @@ no_breads_imgs = []
 breads_imgs = []
 # baked_breads_imgs = []
 
+
 def _one_hot(i, size):
     return list(np.diag([1]*size)[i])
 

@@ -33,7 +33,12 @@ internal class BurnBreadUsecaseImpl(
         }
         // 1:00 に起きてーって言う
         timer.addEvent(1, 0) {
-            TTSService.speach("美味しいパンが待ってるよ！")
+            TTSService.speach("焼きたてパンが待ってるよ！")
+        }
+
+        // 2:40 に起きてーって言う
+        timer.addEvent(1, 25) {
+            TTSService.speach("上手に焼けましたー！！！")
         }
 
         // 1:30 に BGMをかけ始める
@@ -41,19 +46,17 @@ internal class BurnBreadUsecaseImpl(
             burnBreadBGMService.startBGM()
         }
 
-        // 1:30 に 起きろ連呼を終わるまで続ける
-        timer.addEvent(1, 30) {
+        // 2:30 に 起きろ連呼を終わるまで続ける
+        timer.addEvent(1, 40) {
             val text = "起きろ起きろ起きろ"
-            val inputText = text + text + text + text
+            val inputText = text + text + text
             TTSService.speach(inputText)
         }
 
-        if (!debug_mode) {
-            // 1:45 に電源を落とす
-            timer.addEvent(1, 45) {
-                stopBurnBreadUsecase.execute()
-            }
+        // 2:45 に電源を落とす
+        timer.addEvent(1, 30) {
+            stopBurnBreadUsecase.execute()
         }
     }
-
 }
+
