@@ -12,6 +12,6 @@ internal class CalendarEventRepositoryImpl: CalendarEventRepository {
     }
 
     override suspend fun sendCalendarEvent(event: CalendarEvent){
-        Fuel.post("http://example.com/sample/api").body(requestAdapter.toJson(event)).responseString()
+        Fuel.post("https://ch84nlat8b.execute-api.us-east-1.amazonaws.com/v1/calendar").body(requestAdapter.toJson(event)).responseString()
     }
 }
