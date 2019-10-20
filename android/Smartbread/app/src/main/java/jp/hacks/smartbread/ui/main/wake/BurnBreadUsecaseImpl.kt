@@ -36,11 +36,9 @@ internal class BurnBreadUsecaseImpl(
             TTSService.speach("美味しいパンが待ってるよ！")
         }
 
-        if (!debug_mode) {
-            // 1:30 に BGMをかけ始める
-            timer.addEvent(1, 30) {
-                burnBreadBGMService.startBGM()
-            }
+        // 1:30 に BGMをかけ始める
+        timer.addEvent(1, 30) {
+            burnBreadBGMService.startBGM()
         }
 
         // 1:30 に 起きろ連呼を終わるまで続ける
