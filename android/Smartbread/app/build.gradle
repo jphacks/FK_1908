@@ -76,6 +76,8 @@ dependencies {
 
     // material design for android
     implementation 'com.google.android.material:material:1.0.0'
+
+    implementation 'me.everything:providers-android:1.0.1'
 }
 
 ktlint {
