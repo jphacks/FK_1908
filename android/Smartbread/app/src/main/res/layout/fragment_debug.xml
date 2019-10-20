@@ -35,5 +35,13 @@
             android:padding="16dp"
             android:text="音声を話すようにする" />
 
+        <Button
+            android:id="@+id/fragment_debug_bgm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            android:text="BGMを流すようにする" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
