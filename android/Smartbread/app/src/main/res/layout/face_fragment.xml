@@ -93,6 +93,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <Button
+            android:id="@+id/face_fragment_start_wake_up_task_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="起床タスクをスタートする"
+            android:layout_margin="28dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
