@@ -1,18 +1,34 @@
 package jp.hacks.smartbread
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import jp.hacks.smartbread.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import jp.hacks.smartbread.ui.aiface.FaceFragment
+import jp.hacks.smartbread.ui.main.DebugFragment
 
 class MainActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.main_activity)
-    if (savedInstanceState == null) {
-      supportFragmentManager.beginTransaction()
-        .replace(R.id.container, MainFragment.newInstance())
-        .commitNow()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_activity)
+        if (savedInstanceState == null) {
+            // TODO Build variant とかを使ったものに実装を差し替えたい
+            val is_debug_mode = false
+
+            if (is_debug_mode) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, DebugFragment.newInstance())
+                    .commitNow()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, FaceFragment.newInstance())
+                    .commitNow()
+            }
+        }
     }
-  }
+
+    fun navigateToFaceFragment() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, FaceFragment.newInstance())
+            .commitNow()
+    }
 }

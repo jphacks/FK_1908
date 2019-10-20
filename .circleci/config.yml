@@ -8,15 +8,9 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+          command: cd android/Smartbread && ./gradlew androidDependencies
       - persist_to_workspace:
           root: .
           paths:
@@ -31,19 +25,13 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: pwd
-          command: pwd
-      - run:
-          name: ls
-          command: ls
-      - run:
           name: Run Build
-          command: ./gradlew assembleDebug
+          command: cd android/Smartbread && ./gradlew assembleDebug
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
 
   ReleaseBuild:
     working_directory: ~/code
@@ -56,12 +44,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew assembleRelease
+          command: cd android/Smartbread && ./gradlew assembleRelease
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
   test:
     working_directory: ~/code
     docker:
@@ -73,12 +61,12 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew test
+          command: cd android/Smartbread && ./gradlew test
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
+          path: android/Smartbread/app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
   lint:
     working_directory: ~/code
     docker:
@@ -90,12 +78,30 @@ jobs:
           at: .
       - run:
           name: Run Build
-          command: ./gradlew lint
+          command: cd android/Smartbread && ./gradlew lint
       - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
+          path: cd android/Smartbread && app/build/reports
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+          path: cd android/Smartbread && app/build/test-results
+  Danger:
+    working_directory: ~/code
+    docker:
+        - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: install bundle
+          command: bundle install --path vendor/bundle
+      - run:
+          name: ktlint
+          command: cd android/Smartbread && ./gradlew ktlintCheck
+      - run:
+          name: Run Danger
+          command: bundle exec danger --fail-on-errors=true
 workflows:
   version: 2
   main:
@@ -108,6 +114,9 @@ workflows:
           requires:
             - DebugBuild
       - test:
+          requires:
+            - DebugBuild
+      - Danger:
           requires:
             - DebugBuild
       - lint:
