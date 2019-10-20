@@ -39,9 +39,8 @@
 #### フレームワーク・ライブラリ・モジュール
 * Android/kotlin
 * CircleCi
-* Danger
-* ktlint
-* Fuel
+* Danger/ktlint
+* Fuel / Jetpack(ViewModel, Livedata, kotlin-extensions, kotlin coroutines)
 * Python/TensorFlow, keras, uwsgi, flask
 
 #### ミドルウェア/サービス
@@ -75,3 +74,6 @@
 * 朝起きた時に今日の天気を知ることができるように天気を見れるようにした
 * 今回実装した用件を満たすAPIをほぼ全てサーバーレスで実装(https://github.com/jphacks/FK_1908/tree/master/server/bread-api)
 * 複数のAPIコールを有するlambda関数内で並列処理を行い，レスポンスタイムを向上(https://github.com/jphacks/FK_1908/blob/master/server/bread-api/alarm/lambda_function.rb)
+* Android 通信処理やタイマー処理をI/O Thread で動作し必要な時だけUI Thread で動作させることにより、アプリのUIが固まらないように工夫した。
+* Android アプリを開発する中で画面の回転も考慮する必要があるが ViewModel という概念を導入し、
+* CircleCi で ktlint を継続的にチェックすることでコードの品質を一定に保った．アーキテクチャ
