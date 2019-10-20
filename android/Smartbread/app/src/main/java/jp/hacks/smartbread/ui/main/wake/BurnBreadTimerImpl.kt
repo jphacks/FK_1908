@@ -1,5 +1,6 @@
 package jp.hacks.smartbread.ui.main.wake
 
+import android.util.Log
 import java.util.concurrent.TimeUnit
 import jp.hacks.smartbread.ui.main.wake.model.BurnBreadEventModel
 import kotlinx.coroutines.CoroutineScope
@@ -12,16 +13,21 @@ internal class BurnBreadTimerImpl(
     private val coroutineScope: CoroutineScope = GlobalScope
 ) : BurnBreadTimer {
     private var eventList: List<BurnBreadEventModel> = emptyList()
-    private val timer = ticker(TimeUnit.SECONDS.toMinutes(1))
+    private val timer = ticker(TimeUnit.SECONDS.toMillis(1))
 
     init {
+        Log.d("burnbread", "timer started")
+
         coroutineScope.launch {
             timer.consumeEachIndexed { item ->
+                Log.d("burnbread", item.index.toString())
                 val index = item.index
                 eventList.filter { item ->
-                    return@filter (item.minutes * 60 + item.second) == index
+                    Log.d("burnbread", "min: ${TimeUnit.MINUTES.toSeconds(item.minutes.toLong())} sec: ${item.second.toLong()}")
+                    return@filter (TimeUnit.MINUTES.toSeconds(item.minutes.toLong()) + item.second.toLong()) == index.toLong()
                 }.forEach {
                     coroutineScope.launch {
+                        Log.d("burnbread", "${it.minutes}: ${it.second}")
                         it.event()
                     }
                 }

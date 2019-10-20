@@ -48,9 +48,9 @@ internal class DebugFragment : Fragment() {
 
         binding.fragmentDebugTalkButton.setOnClickListener {
             val ttsService = TTSServiceImpl(requireContext())
-            GlobalScope.launch {
+
                 ttsService.speach("今日のお茶汲み係です！！！")
-            }
+                ttsService.speach("お寿司食べたい！！！！！！！")
         }
 
         binding.fragmentDebugBgmButton.setOnClickListener {
