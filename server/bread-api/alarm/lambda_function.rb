@@ -49,6 +49,7 @@ def fetch_duration(origin:, dest:, start_time:)
   raise 'origin or dest are blank' if origin.to_s.empty? || dest.to_s.empty?
 
   req_url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{dest}&departure_time=#{start_time}&key=#{credential}"
+
   uri = URI.parse(req_url)
 
   http = Net::HTTP.new(uri.hostname, uri.port)
