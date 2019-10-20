@@ -5,7 +5,7 @@ import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import jp.hacks.smartbread.ui.main.wake.calendar.model.CalendarEvent
 
-internal object CalendarEventRepositoryImpl: CalendarEventRepository {
+internal class CalendarEventRepositoryImpl: CalendarEventRepository {
 
     private val requestAdapter by lazy {
         Moshi.Builder().add(KotlinJsonAdapterFactory()).build().adapter(CalendarEvent::class.java)
