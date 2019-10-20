@@ -2,7 +2,7 @@ package jp.hacks.smartbread.ui.main.tts
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
-import java.util.*
+import java.util.Locale
 
 class TTSServiceImpl(
     private val context: Context

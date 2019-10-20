@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun navigateToFaceFragment(){
+    fun navigateToFaceFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, FaceFragment.newInstance())
             .commitNow()
