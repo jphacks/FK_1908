@@ -4,11 +4,21 @@ require 'uri'
 require 'rss'
 
 def lambda_handler(event:, context:)
-  req_url = "https://weather.goo.ne.jp/area/8210.rdf"
-  rss = RSS::Parser.parse(req_url, false)
-  weather = rss.channel.item.description
+  area = event['area']
+  raise 'area not allowed be blank' if area.empty?
 
-  { statusCode: 200, data: { weather: weather } }
+  base_url = "http://api.openweathermap.org/data/2.5/forecast"
+  req_url = base_url + "?lat=#{area["lat"]}&lon=#{area["lng"]}&APPID=#{ENV['OpenWeatherAPIKey']}"
+  uri = URI.parse(req_url)
+
+  http = Net::HTTP.new(uri.hostname, uri.port)
+  http.use_ssl = false
+  req = Net::HTTP::Get.new(uri.request_uri)
+  response = http.request(req)
+  data = JSON.parse(response.body)
+  id = data["list"][0]["weather"][0]["id"]
+
+  { statusCode: 200, data: { weatherId: id } }
   rescue => e
   { statusCode: 400, error: e, event: event }
 end

@@ -47,9 +47,11 @@ end
 def fetch_duration(origin:, dest:)
   raise 'origin or dest are blank' if origin.to_s.empty? || dest.to_s.empty?
 
+  # 9:00 a.a.を基準として出発時間を考慮に入れる
   tomorrow = Time.now.localtime.to_date.next_day.to_time
   default_departure_time = DateTime.new(tomorrow.year, tomorrow.month, tomorrow.day, 9, 0, 0, "+09:00").to_time.to_i
 
+  # 出発時間を指定することで、交通状況を考慮した所要時間を取得できる
   req_url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{origin}&destination=#{dest}&departure_time=#{default_departure_time}&key=#{credential}"
   uri = URI.parse(req_url)
 
