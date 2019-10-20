@@ -1,4 +1,4 @@
-package jp.hacks.smartbread.ui.main.wake
+package jp.hacks.smartbread.ui.main.wake.bgm
 
 import android.content.Context
 import android.media.MediaPlayer

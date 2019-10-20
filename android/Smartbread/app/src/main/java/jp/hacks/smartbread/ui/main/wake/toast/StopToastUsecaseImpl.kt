@@ -1,8 +1,9 @@
-package jp.hacks.smartbread.ui.main.wake
+package jp.hacks.smartbread.ui.main.wake.toast
 
 import com.github.kittinunf.fuel.httpPost
 
-internal class StopBurnBreadUsecaseImpl : StopBurnBreadUsecase {
+internal class StopToastUsecaseImpl :
+    StopToastUsecase {
     override suspend fun execute() {
         val response = "https://maker.ifttt.com/trigger/bread_off/with/key/dbxhWoDInPvF69gTuUdNef"
             .httpPost()
