@@ -102,6 +102,18 @@ jobs:
       - run:
           name: Run Danger
           command: bundle exec danger --fail-on-errors=true
+  DeployGate:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29-node
+    environment:
+      JVM_OPTS: -Xmx3200m
+    steps:
+      - attach_workspace:
+          at: .
+      - distribute:
+          name: Deploygate
+          command: cd android/Smartbread && ./gradlew uploadDeployGate1Debug
 workflows:
   version: 2
   main:

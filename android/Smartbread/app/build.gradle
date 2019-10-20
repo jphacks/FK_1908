@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+    apply plugin: 'deploygate'
 
 
 android {
@@ -76,6 +77,9 @@ dependencies {
 
     // material design for android
     implementation 'com.google.android.material:material:1.0.0'
+
+    // Deploygate
+    implementation 'com.deploygate:sdk:4.1.0'
 }
 
 ktlint {
