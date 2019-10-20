@@ -1,4 +1,5 @@
-server/recognition/data
+server/recognition/dataset/data
+**/__pycache__
 **/.DS_Store
 android/Smartbread/app/build
 android/Smartbread/.idea/libraries

@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             // TODO Build variant とかを使ったものに実装を差し替えたい
-            val is_debug_mode = true
+            val is_debug_mode = false
 
             if (is_debug_mode) {
                 supportFragmentManager.beginTransaction()
@@ -24,9 +24,11 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
             }
         }
+
+        GoogleFitApiDebugActivity.startActivity(this)
     }
 
-    fun navigateToFaceFragment(){
+    fun navigateToFaceFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, FaceFragment.newInstance())
             .commitNow()

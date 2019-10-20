@@ -2,7 +2,7 @@ package jp.hacks.smartbread.ui.main.tts
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
-import java.util.*
+import java.util.Locale
 
 class TTSServiceImpl(
     private val context: Context
@@ -10,7 +10,7 @@ class TTSServiceImpl(
 
     private lateinit var tts: TextToSpeech
 
-    override suspend fun speach(text: String) {
+    override fun speach(text: String) {
         tts = TextToSpeech((context)) {
             tts.speak(text, TextToSpeech.QUEUE_ADD, null, null)
         }.apply {

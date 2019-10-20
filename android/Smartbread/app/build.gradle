@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+    apply plugin: 'deploygate'
 
 
 android {
@@ -54,6 +55,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // Google Fit
+    implementation 'com.google.android.gms:play-services-fitness:18.0.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
     // CameraX core library
     def camerax_version = "1.0.0-alpha06"
     implementation "androidx.camera:camera-core:$camerax_version"
@@ -86,6 +91,9 @@ dependencies {
     // moshi
     implementation "com.squareup.moshi:moshi:1.5.0"
     implementation "com.squareup.moshi:moshi-kotlin:1.5.0"
+
+    // Deploygate
+    implementation 'com.deploygate:sdk:4.1.0'
 }
 
 ktlint {
