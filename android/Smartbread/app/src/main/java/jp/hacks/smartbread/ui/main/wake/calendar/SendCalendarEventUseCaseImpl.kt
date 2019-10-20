@@ -5,11 +5,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 
-internal class SendCalendarEventUseCaseImpl: SendCalendarEventUseCase {
+internal class SendCalendarEventUseCaseImpl : SendCalendarEventUseCase {
     private val repository: CalendarEventRepository = CalendarEventRepositoryImpl()
 
     override suspend fun execute(event: CalendarEvent) = coroutineScope {
-        withContext(Dispatchers.IO){
+        withContext(Dispatchers.IO) {
             repository.sendCalendarEvent(event)
         }
     }

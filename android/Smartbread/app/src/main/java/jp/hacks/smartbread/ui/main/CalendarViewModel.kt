@@ -17,7 +17,7 @@ class CalendarViewModel : ViewModel() {
             viewModelScope.launch {
                 useCase.execute(CalendarHelper.setupCalender(context))
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             // Error
         }
     }
