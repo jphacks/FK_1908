@@ -55,7 +55,6 @@ internal class BurnBreadUsecaseImpl(
 
             // 2:45 に電源を落とす
             timer.addEvent(2, 30) {
-
                 stopBurnBreadUsecase.execute()
             }
         }
