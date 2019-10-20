@@ -41,23 +41,22 @@ internal class BurnBreadUsecaseImpl(
             burnBreadBGMService.startBGM()
         }
 
-            // 2:30 に 起きろ連呼を終わるまで続ける
-            timer.addEvent(2, 30) {
-                val text = "起きろ起きろ起きろ"
-                val inputText = text + text + text
-                TTSService.speach(inputText)
-            }
+        // 2:30 に 起きろ連呼を終わるまで続ける
+        timer.addEvent(2, 30) {
+            val text = "起きろ起きろ起きろ"
+            val inputText = text + text + text
+            TTSService.speach(inputText)
+        }
 
-            // 2:40 に起きてーって言う
-            timer.addEvent(2, 0) {
-                TTSService.speach("上手に焼けましたー！！！")
-            }
+        // 2:40 に起きてーって言う
+        timer.addEvent(2, 0) {
+            TTSService.speach("上手に焼けましたー！！！")
+        }
 
-            // 2:45 に電源を落とす
-            timer.addEvent(2, 30) {
-                stopBurnBreadUsecase.execute()
-            }
+        // 2:45 に電源を落とす
+        timer.addEvent(2, 30) {
+            stopBurnBreadUsecase.execute()
         }
     }
-
 }
+
