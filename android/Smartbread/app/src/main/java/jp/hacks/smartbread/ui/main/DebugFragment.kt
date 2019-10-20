@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import jp.hacks.smartbread.MainActivity
 import jp.hacks.smartbread.databinding.FragmentDebugBinding
 import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
+import jp.hacks.smartbread.ui.main.wake.BurnBreadBGMServiceImpl
 import jp.hacks.smartbread.ui.main.wake.StartBurnBreadUsecaseImpl
 import jp.hacks.smartbread.ui.main.wake.StopBurnBreadUsecaseImpl
 import kotlinx.android.synthetic.main.fragment_debug.view.*
@@ -50,7 +51,14 @@ internal class DebugFragment : Fragment() {
         binding.fragmentDebugTalkButton.setOnClickListener {
             val ttsService = TTSServiceImpl(requireContext())
             GlobalScope.launch {
-                ttsService.speach("Hello World")
+                ttsService.speach("今日のお茶汲み係です！！！")
+            }
+        }
+
+        binding.fragmentDebugBgmButton.setOnClickListener {
+            val bgmService = BurnBreadBGMServiceImpl(requireContext())
+            GlobalScope.launch {
+                bgmService.startBGM()
             }
         }
 

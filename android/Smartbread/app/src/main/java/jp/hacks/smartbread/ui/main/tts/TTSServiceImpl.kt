@@ -2,14 +2,19 @@ package jp.hacks.smartbread.ui.main.tts
 
 import android.content.Context
 import android.speech.tts.TextToSpeech
+import java.util.*
 
 class TTSServiceImpl(
     private val context: Context
 ) : TTSService {
 
-    private var textToSpeech: TextToSpeech = TextToSpeech((context)) {}
+    private lateinit var tts: TextToSpeech
 
     override suspend fun speach(text: String) {
-        textToSpeech.speak(text, TextToSpeech.QUEUE_ADD, null, null)
+        tts = TextToSpeech((context)) {
+            tts.speak(text, TextToSpeech.QUEUE_ADD, null, null)
+        }.apply {
+            this.language = Locale.JAPAN
+        }
     }
 }
