@@ -215,6 +215,9 @@ dependencies {
 
     // AutoFill
     implementation("androidx.autofill:autofill:1.0.0-beta01")
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 ktlint {
