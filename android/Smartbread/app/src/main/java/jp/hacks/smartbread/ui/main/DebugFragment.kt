@@ -52,8 +52,8 @@ internal class DebugFragment : Fragment() {
         binding.fragmentDebugTalkButton.setOnClickListener {
             val ttsService = TTSServiceImpl(requireContext())
 
-                ttsService.speach("今日のお茶汲み係です！！！")
-                ttsService.speach("お寿司食べたい！！！！！！！")
+            ttsService.speach("今日のお茶汲み係です！！！")
+            ttsService.speach("お寿司食べたい！！！！！！！")
         }
 
         binding.fragmentDebugBgmButton.setOnClickListener {
@@ -67,6 +67,11 @@ internal class DebugFragment : Fragment() {
         binding.fragmentDebugNavigateFaceFragmentButton.setOnClickListener {
             val mainActivity = activity as MainActivity
             mainActivity.navigateToFaceFragment()
+        }
+
+        binding.fragmentDebugShowPointCardButton.setOnClickListener {
+            val pointCardDialogFragment = PointCardDialogFragment()
+            pointCardDialogFragment.show(requireFragmentManager(), "")
         }
 
         return binding.root
