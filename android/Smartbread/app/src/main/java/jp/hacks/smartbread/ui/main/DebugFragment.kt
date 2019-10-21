@@ -71,6 +71,10 @@ internal class DebugFragment : Fragment() {
             mainActivity.navigateToFaceFragment()
         }
 
+        binding.fragmentDebugShowPointCardButton.setOnClickListener {
+            val pointCardDialogFragment = PointCardDialogFragment()
+            pointCardDialogFragment.show(requireFragmentManager(), "")
+
         binding.fragmentDebugSendLocalNotification.setOnClickListener {
             val notificationUsecase = SendNotificationUsecaseImpl(requireContext())
             GlobalScope.launch {
