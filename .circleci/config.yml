@@ -126,6 +126,3 @@ workflows:
       - lint:
           requires:
             - DebugBuild
-      - DeployGate:
-          requires:
-            - DebugBuild
