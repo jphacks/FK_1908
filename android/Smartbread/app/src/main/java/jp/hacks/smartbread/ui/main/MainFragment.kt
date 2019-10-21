@@ -10,20 +10,13 @@ import androidx.camera.core.CameraX
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.fitness.Fitness
-import com.google.android.gms.fitness.FitnessOptions
-import com.google.android.gms.fitness.data.DataType
-import com.google.android.gms.fitness.request.DataReadRequest
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
+import java.util.Locale
 import jp.hacks.smartbread.R
 import kotlinx.android.synthetic.main.main_fragment.main_fragment_pay_meet_button
 import kotlinx.android.synthetic.main.main_fragment.save_image_button
 import kotlinx.android.synthetic.main.main_fragment.saved_image_finder
 import kotlinx.android.synthetic.main.main_fragment.test_tts_button
 import kotlinx.android.synthetic.main.main_fragment.view_finder
-import java.util.Locale
 
 class MainFragment : Fragment() {
 
@@ -78,6 +71,4 @@ class MainFragment : Fragment() {
 
         viewModel.startTimer(this.requireContext())
     }
-
-
 }
