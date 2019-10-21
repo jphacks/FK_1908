@@ -1,10 +1,10 @@
 package jp.hacks.smartbread.ui.main.wake.autowake
 
 import android.content.Context
-import jp.hacks.smartbread.ui.main.bread.HasBreadUsecase
-import jp.hacks.smartbread.ui.main.bread.HasBreadUsecaseImpl
 import java.util.Date
 import java.util.concurrent.TimeUnit
+import jp.hacks.smartbread.ui.main.bread.HasBreadUsecase
+import jp.hacks.smartbread.ui.main.bread.HasBreadUsecaseImpl
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecase
 import jp.hacks.smartbread.ui.main.wake.BurnBreadUsecaseImpl
 import jp.hacks.smartbread.ui.main.wake.autowake.repository.WakeDateReadonlyRepository
@@ -33,9 +33,8 @@ internal class AutoWakeService(
                 if (now.hours == targetDate.hours && now.minutes == targetDate.minutes) {
                     burnBreadUsecase.startBurn()
                 }
-                if(now.hours == 22 && now.minutes == 0){
+                if (now.hours == 22 && now.minutes == 0) {
                     GlobalScope.launch(Dispatchers.IO) {
-
                     }
                 }
             }
