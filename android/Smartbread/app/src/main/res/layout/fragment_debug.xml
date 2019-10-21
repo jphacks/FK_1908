@@ -53,12 +53,20 @@
             android:text="顔の画面に遷移するようにする" />
 
         <Button
-            android:id="@+id/fragment_debug_show_point_card_button"
+            android:id="@+id/fragment_debug_send_local_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="16dp"
             android:text="ポイントカードを表示する" />
+
+        <Button
+            android:id="@+id/fragment_debug_show_point_card_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="16dp"
+            android:text="通知を送信してみる" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

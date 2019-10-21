@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import jp.hacks.smartbread.MainActivity
 import jp.hacks.smartbread.databinding.FragmentDebugBinding
+import jp.hacks.smartbread.notification.NotificationKind
+import jp.hacks.smartbread.notification.SendNotificationUsecaseImpl
 import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
 import jp.hacks.smartbread.ui.main.wake.bgm.BurnBreadBGMServiceImpl
 import jp.hacks.smartbread.ui.main.wake.toast.StartToastUsecaseImpl
@@ -72,6 +74,12 @@ internal class DebugFragment : Fragment() {
         binding.fragmentDebugShowPointCardButton.setOnClickListener {
             val pointCardDialogFragment = PointCardDialogFragment()
             pointCardDialogFragment.show(requireFragmentManager(), "")
+
+        binding.fragmentDebugSendLocalNotification.setOnClickListener {
+            val notificationUsecase = SendNotificationUsecaseImpl(requireContext())
+            GlobalScope.launch {
+                notificationUsecase.sendNotification(NotificationKind.simple, "Hello Notification")
+            }
         }
 
         return binding.root
