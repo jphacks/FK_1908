@@ -94,6 +94,127 @@ dependencies {
 
     // Deploygate
     implementation 'com.deploygate:sdk:4.1.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation("androidx.core:core-ktx:1.1.0")
+    implementation("androidx.palette:palette-ktx:1.0.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.0.1")
+    implementation("androidx.collection:collection-ktx:1.1.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-reactivestreams-ktx:2.1.0")
+
+    implementation("androidx.work:work-runtime-ktx:2.2.0")
+
+    testImplementation("androidx.benchmark:benchmark-junit4:1.0.0-beta01")
+
+    // CameraX
+    implementation "androidx.camera:camera-core:1.0.0-alpha06"
+    implementation "androidx.camera:camera-camera2:1.0.0-alpha06"
+    implementation "androidx.camera:camera-view:1.0.0-alpha03"
+    implementation "androidx.camera:camera-extensions:1.0.0-alpha03"
+
+    // Activity
+    implementation("androidx.activity:activity-ktx:1.0.0")
+
+    // Fragment
+    implementation("androidx.fragment:fragment-ktx:1.1.0")
+
+    // GridLayout
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
+
+    // Loader
+    implementation("androidx.loader:loader:1.1.0")
+
+    // Media
+    implementation("androidx.media:media:1.1.0")
+
+    // Media2
+    implementation("androidx.media2:media2-session:1.0.1")
+    // UI Widget for VideoView and MediaConrolView
+    implementation("androidx.media2:media2-widget:1.0.1")
+    // Session Player
+    implementation("androidx.media2:media2-player:1.0.1")
+
+    // Media Router
+    implementation("androidx.mediarouter:mediarouter:1.1.0")
+
+    // Navigation
+    // https://developer.android.com/jetpack/androidx/releases/navigation?hl=JA
+    implementation("androidx.navigation:navigation-fragment-ktx:2.1.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.1.0")
+    implementation("androidx.navigation:navigation-common-ktx:2.1.0")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.1.0")
+
+    // LiveData and ViewModel
+    // https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=JA#declaring_dependencies
+    implementation("androidx.lifecycle:lifecycle-extensions:2.1.0")
+    kapt("androidx.lifecycle:lifecycle-compiler:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.1.0")
+    implementation("androidx.lifecycle:lifecycle-reactivestreams:2.1.0")
+    implementation("androidx.arch.core:core-testing:2.1.0")
+
+    // Paging
+    implementation("androidx.paging:paging-runtime:2.1.0")
+    implementation("androidx.paging:paging-common:2.1.0")
+    implementation("androidx.paging:paging-rxjava2:2.1.0")
+
+    // Preference
+    implementation("androidx.preference:preference-ktx:1.1.0")
+
+    // RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.0.0")
+    implementation("androidx.recyclerview:recyclerview-selection:1.0.0")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.2.0")
+    kapt("androidx.room:room-compiler:2.2.0")
+    implementation("androidx.room:room-ktx:2.2.0")
+    implementation("androidx.room:room-rxjava2:2.2.0")
+    testImplementation("androidx.room:room-testing:2.2.0")
+
+    // SaveData
+    implementation("androidx.savedstate:savedstate:1.0.0")
+
+    // Security
+    implementation("androidx.security:security-crypto:1.0.0-alpha02")
+
+    // Slice
+    implementation("androidx.slice:slice-builders:1.1.0-alpha01")
+    implementation("androidx.slice:slice-builders-ktx:1.0.0-alpha6")
+    implementation("androidx.slice:slice-core:1.1.0-alpha01")
+    implementation("androidx.slice:slice-view:1.1.0-alpha01")
+
+    // SwipeRefreshLayout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+
+    // Trasition
+    implementation("androidx.transition:transition:1.2.0")
+
+    // VectorDrawable
+    implementation("androidx.vectordrawable:vectordrawable:1.1.0")
+    implementation("androidx.vectordrawable:vectordrawable-animated:1.1.0")
+
+    // versionParcelable
+    implementation("androidx.versionedparcelable:versionedparcelable:1.1.0")
+
+    // ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.0.0-beta05")
+
+    // Webkit
+    implementation("androidx.webkit:webkit:1.1.0-rc01")
+
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.2.0")
+    implementation("androidx.work:work-gcm:2.2.0")
+    androidTestImplementation("androidx.work:work-testing:2.2.0")
+
+    // AutoFill
+    implementation("androidx.autofill:autofill:1.0.0-beta01")
 }
 
 ktlint {
