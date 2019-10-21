@@ -1,6 +1,5 @@
 package jp.hacks.smartbread.notification
 
-import android.app.NotificationChannelGroup
 import android.content.Intent
 
 internal interface SendNotificationUsecase {
