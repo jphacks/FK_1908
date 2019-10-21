@@ -1,4 +1,4 @@
-package jp.hacks.smartbread.ui.main.wake.burntimer
+package jp.hacks.smartbread.ui.main.wake
 
 import android.util.Log
 import java.util.concurrent.TimeUnit
