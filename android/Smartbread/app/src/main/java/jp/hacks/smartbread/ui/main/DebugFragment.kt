@@ -10,10 +10,9 @@ import jp.hacks.smartbread.databinding.FragmentDebugBinding
 import jp.hacks.smartbread.notification.NotificationKind
 import jp.hacks.smartbread.notification.SendNotificationUsecaseImpl
 import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
-import jp.hacks.smartbread.ui.main.wake.BurnBreadBGMServiceImpl
-import jp.hacks.smartbread.ui.main.wake.StartBurnBreadUsecaseImpl
-import jp.hacks.smartbread.ui.main.wake.StopBurnBreadUsecaseImpl
-import kotlinx.android.synthetic.main.fragment_debug.view.*
+import jp.hacks.smartbread.ui.main.wake.bgm.BurnBreadBGMServiceImpl
+import jp.hacks.smartbread.ui.main.wake.toast.StartToastUsecaseImpl
+import jp.hacks.smartbread.ui.main.wake.toast.StopToastUsecaseImpl
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -37,14 +36,16 @@ internal class DebugFragment : Fragment() {
         )
 
         binding.fragmentDebugPowerOnButton.setOnClickListener {
-            val startBurnBreadUsecase = StartBurnBreadUsecaseImpl()
+            val startBurnBreadUsecase =
+                StartToastUsecaseImpl()
             GlobalScope.launch {
                 startBurnBreadUsecase.execute()
             }
         }
 
         binding.fragmentDebugPowerOffButton.setOnClickListener {
-            val stopBurnBreadUsecase = StopBurnBreadUsecaseImpl()
+            val stopBurnBreadUsecase =
+                StopToastUsecaseImpl()
             GlobalScope.launch {
                 stopBurnBreadUsecase.execute()
             }
@@ -58,7 +59,8 @@ internal class DebugFragment : Fragment() {
         }
 
         binding.fragmentDebugBgmButton.setOnClickListener {
-            val bgmService = BurnBreadBGMServiceImpl(requireContext())
+            val bgmService =
+                BurnBreadBGMServiceImpl(requireContext())
             GlobalScope.launch {
                 bgmService.startBGM()
             }

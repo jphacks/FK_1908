@@ -84,9 +84,6 @@ jobs:
           destination: reports
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: cd android/Smartbread && app/build/test-results
-      - run:
-          name: Deploygate
-          command: cd android/Smartbread && ./gradlew uploadDeployGate1Debug
   Danger:
     working_directory: ~/code
     docker:
@@ -124,8 +121,5 @@ workflows:
           requires:
             - DebugBuild
       - lint:
-          requires:
-            - DebugBuild
-      - DeployGate:
           requires:
             - DebugBuild

@@ -3,6 +3,14 @@ package jp.hacks.smartbread.ui.main.wake
 import android.content.Context
 import jp.hacks.smartbread.ui.main.tts.TTSService
 import jp.hacks.smartbread.ui.main.tts.TTSServiceImpl
+import jp.hacks.smartbread.ui.main.wake.bgm.BurnBreadBGMService
+import jp.hacks.smartbread.ui.main.wake.bgm.BurnBreadBGMServiceImpl
+import jp.hacks.smartbread.ui.main.wake.burntimer.BurnBreadTimer
+import jp.hacks.smartbread.ui.main.wake.burntimer.BurnBreadTimerImpl
+import jp.hacks.smartbread.ui.main.wake.toast.StartToastUsecase
+import jp.hacks.smartbread.ui.main.wake.toast.StartToastUsecaseImpl
+import jp.hacks.smartbread.ui.main.wake.toast.StopToastUsecase
+import jp.hacks.smartbread.ui.main.wake.toast.StopToastUsecaseImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 
@@ -10,10 +18,14 @@ internal class BurnBreadUsecaseImpl(
     private val context: Context,
     private val TTSService: TTSService = TTSServiceImpl(context),
     private val coroutineScope: CoroutineScope = GlobalScope,
-    private val burnBreadBGMService: BurnBreadBGMService = BurnBreadBGMServiceImpl(context),
-    private val startBurnBreadUsecase: StartBurnBreadUsecase = StartBurnBreadUsecaseImpl(),
-    private val stopBurnBreadUsecase: StopBurnBreadUsecase = StopBurnBreadUsecaseImpl(),
-    private val burnBreadTimer: BurnBreadTimer = BurnBreadTimerImpl(coroutineScope)
+    private val burnBreadBGMService: BurnBreadBGMService = BurnBreadBGMServiceImpl(
+        context
+    ),
+    private val startBurnBreadUsecase: StartToastUsecase = StartToastUsecaseImpl(),
+    private val stopToastUsecase: StopToastUsecase = StopToastUsecaseImpl(),
+    private val burnBreadTimer: BurnBreadTimer = BurnBreadTimerImpl(
+        coroutineScope
+    )
 ) : BurnBreadUsecase {
     override suspend fun startBurn() {
 
@@ -55,7 +67,7 @@ internal class BurnBreadUsecaseImpl(
 
         // 2:45 に電源を落とす
         timer.addEvent(1, 30) {
-            stopBurnBreadUsecase.execute()
+            stopToastUsecase.execute()
         }
     }
 }

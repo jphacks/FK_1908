@@ -9,3 +9,9 @@ android/Smartbread/app/build
 **/build/**
 vendor
 android/Smartbread/.gradle
+android/Smartbread/.idea/caches
+.idea
+android/Smartbread/.idea
+android/Smartbread/app/app.iml
+android/Smartbread/app/app.iml
+android/Smartbread/.idea/workspace.xml
