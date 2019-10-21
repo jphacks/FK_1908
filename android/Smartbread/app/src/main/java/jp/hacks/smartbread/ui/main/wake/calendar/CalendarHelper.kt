@@ -3,11 +3,10 @@ package jp.hacks.smartbread.ui.main.wake.calendar
 import android.content.Context
 import android.icu.util.Calendar
 import android.text.format.DateFormat
+import java.sql.Date
 import jp.hacks.smartbread.ui.main.wake.calendar.model.CalendarEvent
 import me.everything.providers.android.calendar.CalendarProvider
 import me.everything.providers.android.calendar.Event
-import java.sql.Date
-
 
 object CalendarHelper {
 

@@ -8,11 +8,11 @@ import jp.hacks.smartbread.databinding.ItemPointcardPointBinding
 internal class PointCardViewHolder private constructor(
     private val binding: ItemPointcardPointBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    companion object{
+    companion object {
         fun create(
             layoutInflater: LayoutInflater,
             container: ViewGroup
-        ): PointCardViewHolder{
+        ): PointCardViewHolder {
             return PointCardViewHolder(
                 ItemPointcardPointBinding.inflate(
                     layoutInflater,
@@ -23,7 +23,7 @@ internal class PointCardViewHolder private constructor(
         }
     }
 
-    fun bindTo(viewEntity: PointCardPointViewEntity){
+    fun bindTo(viewEntity: PointCardPointViewEntity) {
         binding.viewEntity = viewEntity
     }
 }

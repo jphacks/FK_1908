@@ -37,5 +37,4 @@ internal class PointCardAdapter(
             }
         }
     }
-
 }
